@@ -21,3 +21,13 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Local reverse-engineering / analysis artifacts
+/analysis/
+/iOS/
+__pycache__/
+*.pyc
+hs_err_pid*.log
+*.apk
+*.dex
+*.so

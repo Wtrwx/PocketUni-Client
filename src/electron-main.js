@@ -1,10 +1,15 @@
-const { app, BrowserWindow, session } = require('electron');
+const path = require('path');
+const { app, BrowserWindow } = require('electron');
 
 app.on('ready', () => {
   // 创建主窗口
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600
+  let mainWindow = new BrowserWindow({
+    title: 'PU 口袋校园',
+    icon: path.join(__dirname, '../public/favicon.ico'),
+    width: 1280,
+    height: 860,
+    minWidth: 980,
+    minHeight: 720
   });
 
   // 获取默认的会话对象
@@ -16,13 +21,13 @@ app.on('ready', () => {
     callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
 
-  // 加载页面文件
-  if (app.isPackaged) {
-    // 如果是打包好的就加载打包的 HTML 文件
-    mainWindow.loadFile('dist/index.html');
+  const devServerUrl =
+    process.env.ELECTRON_DEV_SERVER_URL || process.env.VUE_DEV_SERVER_URL;
+
+  if (!app.isPackaged && devServerUrl) {
+    mainWindow.loadURL(devServerUrl);
   } else {
-    // 如果没有打包就直接从本地服务器加载
-    mainWindow.loadURL('http://localhost:8080/');
+    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
   }
 
   // 关闭事件

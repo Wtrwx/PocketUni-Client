@@ -1,6 +1,7 @@
 // utils.js
 
 export const formatTime = (timestamp) => {
+  if (!timestamp) return "-";
   const date = new Date(timestamp * 1000);
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");

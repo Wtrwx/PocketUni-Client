@@ -2,6 +2,10 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import Toast from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
+import 'element-plus/theme-chalk/base.css';
+import 'element-plus/theme-chalk/el-overlay.css';
+import 'element-plus/theme-chalk/el-message-box.css';
+import './styles/theme.css';
 import VueQrcode from '@chenfengyuan/vue-qrcode';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
